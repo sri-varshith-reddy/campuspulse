@@ -29,7 +29,18 @@ const ListingSchema = new Schema({
         type: String,
         default: "INDIA"
     } ,
-    
+     startDate: {
+        type: Date,
+        required: true
+    },
+    endDate: {
+        type: Date,
+        required: true
+    },
+   attendees: {
+    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    default: []
+  },
     reviews:[
         {
             type:Schema.Types.ObjectId, 

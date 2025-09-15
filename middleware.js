@@ -70,7 +70,7 @@ let isReviewAuthor=async (req,res,next)=>{
             if(!review.author.equals(res.locals.currUser._id)){
                 req.flash("error", "You dont have permission to delete!");
                 return res.redirect(`/listing/${id}`);
-            }
+            }                                           
         next();
 }
 

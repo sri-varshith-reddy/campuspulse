@@ -1,6 +1,6 @@
 const Listing = require("../models/listing.js");
-
-
+    
+//CATEGORY
 module.exports.index = async (req, res) => {
     const { category } = req.query;
 
@@ -39,7 +39,7 @@ module.exports.renderForm=async (req, res) => {
 
 module.exports.showListing=async (req, res) => {
         const { id } = req.params; 
-        // let item = await Listing.findById(id).populate("reviews").populate("owner"); 
+        // let item = await Listing.findById(id).populate("reviews").populate("n  "); 
         let item = await Listing.findById(id)
             .populate({ path: "reviews",
                 populate:{

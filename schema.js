@@ -12,18 +12,27 @@ const ListingSchema = Joi.object({
         }).required(),
         price: Joi.number().required().min(0)
         ,
-    category: Joi.string().valid(
-      "Hackathons", "CodingContests", "Workshops", "AI/MLSummits",
-      "Music", "Dance", "Drama", "FashionShows",
-      "Football", "Cricket", "Esports", "Marathons",
-      "Guest Lectures", "ResearchTalks", "StartupMeets",
-      "CollegeFests", "DepartmentDays"
-    ).required()
+        category: Joi.string().valid(
+        "Hackathons", "CodingContests", "Workshops", "AI/MLSummits",
+        "Music", "Dance", "Drama", "FashionShows",
+        "Football", "Cricket", "Esports", "Marathons",
+        "Guest Lectures", "ResearchTalks", "StartupMeets",
+        "CollegeFests", "DepartmentDays"
+        ).required(),
+
+        startDate: Joi.date().iso().required().label("Start Date"),
+        endDate: Joi.date().iso()
+        .required()
+        .min(Joi.ref("startDate"))
+        .messages({
+            "date.min": "End Date must be the same or after Start Date"
+        })
+        .label("End Date")
+
     }).required()
 });
 
-module.exports = { ListingSchema };
- 
+  
 
 const ReviewSchema=Joi.object({
     review:Joi.object({

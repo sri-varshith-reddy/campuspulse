@@ -8,7 +8,7 @@ module.exports.signUp =async (req, res, next) => {
         const newUser = new User({ email, username });
         const registerUser = await User.register(newUser, password);
         console.log(registerUser);
-
+        
         req.login(registerUser, (err) => {
             if (err) {
                 return next(err);  // Use `return` to prevent further execution
@@ -27,7 +27,8 @@ module.exports.renderLoginForm=(req,res)=>{
 } 
 
 module.exports.login=async(req,res)=>{
-    req.flash("Welcome back"); 
+    req.flash("success", "Welcome back");
+
     console.log("Redirecting to:", res.locals.redirectUrl);
     res.redirect(res.locals.redirectUrl ||"/listing" );
 

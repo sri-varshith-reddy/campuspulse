@@ -71,7 +71,34 @@
           <input name="new[location]" type="text" value="<%=item.location%>" placeholder="eg:Hyderabad, Telangana.." class="form-control" required>
           <div class="invalid-feedback">Invalid location</div>
         </div>
-        <button class="btn btn-dark add-new mt-3">Update</button>
+
+
+        <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input
+          name="new[startDate]"
+          type="date"
+          value="<%= item.startDate.toISOString().split('T')[0] %>"
+          class="form-control"
+          required
+        >
+        <div class="invalid-feedback">Please select a start date</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input
+          name="new[endDate]"
+          type="date"
+          value="<%= item.endDate.toISOString().split('T')[0] %>"
+          class="form-control"
+          required
+        >
+        <div class="invalid-feedback">Please select an end date</div>
+      </div>
+
+      <button class="btn btn-dark add-new mt-3">Update</button>
+
       </form>
     </div>
   </div>

@@ -576,3 +576,177 @@ a:hover {
 .legal-container a:hover {
   text-decoration: underline;
 }
+
+  .show-container {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 1.5rem;
+  }
+
+  .hero-wrap {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .hero-wrap img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent 30%);
+  }
+
+  .info-panel {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+  }
+  .info-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .info-category,
+  .info-line {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  .info-category i,
+  .info-line i {
+    margin-right: 0.5rem;
+    width: 1rem;
+    text-align: center;
+  }
+  .info-price-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.25rem;
+  }
+  .info-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .spacer { flex-grow: 1; }
+  hr { border: none; border-top: 1px solid #eee; margin: 1rem 0; }
+
+  .btn-book {
+    width: 100%;
+    padding: 0.75rem;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  .btn-book:hover { background: #333; }
+
+  .about-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+  }
+  .description { line-height: 1.6; }
+
+  .leave-header,
+  .reviews-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+  }
+  .review-card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 1rem;
+  }
+  .starability-result,
+  .review-card .card-body {
+    color: #000;
+  }
+
+  .owner-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-owner-edit,
+  .btn-owner-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .btn-owner-edit {
+    background-color: #007bff;
+    color: #fff;
+  }
+  .btn-owner-edit:hover {
+    background-color: #0056b3;
+  }
+  .btn-owner-delete {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+  }
+  .btn-owner-delete:hover {
+    background-color: #a71d2a;
+  }
+
+  @media (max-width: 768px) {
+    .hero-wrap img { height: 250px; }
+    .info-panel { min-height: auto; }
+  }
+
+  .cardlink,
+.cardlink:hover {
+  text-decoration: none;
+}
+.card-text i.far.fa-calendar-alt {
+  margin-left: 0.5rem; /* adjust this value as needed */
+}
+.card-text {
+  margin-bottom: 0.3rem !important;   /* reduce bottom margin for all texts */
+}
+
+.card-date {
+  margin-top: 0.2rem !important;  /* reduce space from the price above */
+  margin-bottom: 0 !important;    /* remove unnecessary bottom margin */
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.card-date i {
+  margin-right: 0.4rem;
+  color: #999;
+}

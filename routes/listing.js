@@ -9,11 +9,12 @@
     const upload=multer({storage}); 
     const router=express.Router(); 
 
+    
 
     router 
     .route("/")
     .get(wrapAsync(listingController.index))//index
-    .post( loggedin, upload.single('new[image]'), validatelisting, wrapAsync(listingController.createListing));
+    .post( loggedin, upload.single('new[image]'), validatelisting, wrapAsync(listingController.createListing)); 
 
     router.get("/contact", listingController.renderContactPage);
     router.post("/contact", listingController.submitContactForm);
@@ -30,7 +31,28 @@
     .get( wrapAsync(listingController.showListing)) //show
     .put( loggedin,upload.single('new[image]'),validatelisting,isOwner,wrapAsync(listingController.updateListing))//update 
     .delete(loggedin, isOwner,wrapAsync(listingController.destroyListing)); //delete
+// POST /listing/:id/book →   RSVP / book event
+// POST /listing/:id/book  →  RSVP / book event
+router.post(
+  "/:id/book",
+  loggedin,
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    listing.attendees = listing.attendees || [];
+    const uid = req.user._id.toString();
 
+    if (!listing.attendees.map(a => a.toString()).includes(uid)) {
+      listing.attendees.push(req.user._id);
+      await listing.save();
+      req.flash("success", "You’ve booked this event!");
+    } else {
+      req.flash("info", "You already booked this event.");
+    }
+
+    res.redirect(`/listing/${id}`);
+  })
+);
 
 
     router.get("/:id/edit",loggedin,isOwner, wrapAsync(listingController.renderEditForm))

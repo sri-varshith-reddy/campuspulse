@@ -73,6 +73,30 @@
             <input name="new[location]" type="text" placeholder="eg:Hyderbad,Telangana.." class="form-control" required>
             <div class="invalid-feedback">Invalid location</div> 
         </div>  
+
+
+        <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input
+            name="new[startDate]"
+            type="date"
+            class="form-control"
+            required
+        >
+        <div class="invalid-feedback">Please select a start date</div>
+        </div>
+
+        <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input
+            name="new[endDate]"
+            type="date"
+            class="form-control"
+            required
+        >
+        <div class="invalid-feedback">Please select an end date</div>
+        </div>
+
         <button class="btn btn-dark add-new mt-3">Add</button>
     </form>
 </div>

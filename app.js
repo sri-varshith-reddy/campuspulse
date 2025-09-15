@@ -7,7 +7,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const port = 8080;
-    
+     
 const flash=require("connect-flash");
 const session=require("express-session");                                      
 const methodOverride = require("method-override");
@@ -25,14 +25,14 @@ const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 
-app.set("view engine", "ejs");//"ejs"
-app.set("views", path.join(__dirname, "views")); 
-app.use(express.urlencoded({ extended: true })); 
-app.use(express.json()); // Parses JSON data
-app.use(methodOverride("_method"));
-app.engine("ejs", ejsMate);
-app.use(express.static(path.join(__dirname, "/public")))
-app.use(express.static(path.join(__dirname, '/images')));
+    app.set("view engine", "ejs");//"ejs"
+    app.set("views", path.join(__dirname, "views")); 
+    app.use(express.urlencoded({ extended: true })); 
+    app.use(express.json()); // Parses JSON data
+    app.use(methodOverride("_method"));
+    app.engine("ejs", ejsMate);
+    app.use(express.static(path.join(__dirname, "/public")))
+    app.use(express.static(path.join(__dirname, '/images')));
 
 let mongourl = "mongodb://localhost:27017/mydatabase";
 

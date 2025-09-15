@@ -1,6 +1,6 @@
 const express=require("express"); 
 const app=express() 
-
+const flash=require("connect-flash");
 
 const session=require("express-session"); 
 
@@ -14,8 +14,7 @@ app.use(
 app.use(flash()); 
 app.listen(3000,()=>{
     console.log("server is listening to 3000"); 
-})
-
+})                                                                                         
 app.get("/session",(req,res)=>{
     let {name="anonymous"}=req.query;
     req.session.name=name;  
