@@ -4,7 +4,6 @@
      const express = require("express");
      const mongoose = require("mongoose");
      const app = express();
-     const port = 8080;
           
      const flash=require("connect-flash");
      const session=require("express-session");                                      
@@ -32,7 +31,9 @@
          app.use(express.static(path.join(__dirname, "/public")))
          app.use(express.static(path.join(__dirname, '/images')));
      
-let mongourl = process.env.MONGO_URL;
+let mongourl = process.env.MONGO_URL || "mongodb://mongo:EswvuNnfPCkNIoKpVnOMKqniQcFPVcOg@yamabiko.proxy.rlwy.net:21913";
+console.log("MONGO_URL is:", mongourl);
+
 console.log("MONGO_URL is:", process.env.MONGO_URL);
 
      
@@ -83,10 +84,11 @@ async function main(){
         console.error("MongoDB connection error:", err);
     }
 }
+const port = process.env.PORT || 8080;
 
-     app.listen(port, () => {
-         console.log("app listening on port 8080")
-     });
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+});
      
      
      
