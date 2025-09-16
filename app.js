@@ -13,11 +13,12 @@
      const ExpressError = require("./utils/ExpressError.js")
      const NewSchema=require("./schema.js"); 
      
+     
      const { cookie } = require("express/lib/response.js");
      const passport=require("passport"); 
      const localStrategy=require("passport-local");
      const User=require("./models/user.js"); 
-     
+     const { data: sampleListings } = require("./init/data");
      const listingRouter=require("./routes/listing.js");
      const reviewRouter=require("./routes/review.js");
      const userRouter=require("./routes/user.js");
@@ -106,11 +107,11 @@ app.listen(port, () => {
          let { statusCode=404, message="NO MESSAGE"} = err;
          res.render("error",{message})
      })
-const Listing = require("./models/listing");
-const { data: sampleListings } = require("./init/data");
+
 
 async function seedIfEmpty() {
   const count = await Listing.countDocuments();
+  console.log("Listings in DB:", count); // 👈 check Railway logs here
   if (count === 0) {
     await Listing.insertMany(sampleListings);
     console.log("✅ Sample listings inserted");
