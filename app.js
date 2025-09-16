@@ -4,7 +4,11 @@
      const express = require("express");
      const mongoose = require("mongoose");
      const app = express();
-          
+     const MONGO_URL = "mongodb://mongo:EswvuNnfPCkNIoKpVnOMKqniQcFPVcOg@yamabiko.proxy.rlwy.net:21913";
+     const CLOUDINARY_CLOUD_NAME = "dmcdfoduy";
+     const CLOUDINARY_API_KEY = "956434331232872";
+     const CLOUDINARY_API_SECRET = "2n_b4GmDIoJvzJL0jMKycW9ikUQ";
+     const SESSION_SECRET = "mysecret123";  // you can pick any string     
      const flash=require("connect-flash");
      const session=require("express-session");                                      
      const methodOverride = require("method-override");
