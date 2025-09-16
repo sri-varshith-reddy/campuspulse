@@ -13,7 +13,8 @@
      const ExpressError = require("./utils/ExpressError.js")
      const NewSchema=require("./schema.js"); 
      
-     
+     const Listing = require("./models/listing.js");   // 👈 Add this line
+
      const { cookie } = require("express/lib/response.js");
      const passport=require("passport"); 
      const localStrategy=require("passport-local");
