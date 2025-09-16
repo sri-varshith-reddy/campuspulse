@@ -33,6 +33,7 @@
          app.use(express.static(path.join(__dirname, '/images')));
      
 let mongourl = process.env.MONGO_URL;
+console.log("MONGO_URL is:", process.env.MONGO_URL);
 
      
      // app.get("/", (req, res) => {
@@ -74,10 +75,15 @@ let mongourl = process.env.MONGO_URL;
          console.log("mongo working");
      });
      
-     async function main(){
-         await mongoose.connect(mongourl);
-     };
-     
+async function main(){
+    try {
+        await mongoose.connect(mongourl);
+        console.log("MongoDB connected successfully");
+    } catch (err) {
+        console.error("MongoDB connection error:", err);
+    }
+}
+
      app.listen(port, () => {
          console.log("app listening on port 8080")
      });
