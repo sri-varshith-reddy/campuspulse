@@ -106,3 +106,15 @@ app.listen(port, () => {
          let { statusCode=404, message="NO MESSAGE"} = err;
          res.render("error",{message})
      })
+const Listing = require("./models/listing");
+const { data: sampleListings } = require("./init/data");
+
+async function seedIfEmpty() {
+  const count = await Listing.countDocuments();
+  if (count === 0) {
+    await Listing.insertMany(sampleListings);
+    console.log("✅ Sample listings inserted");
+  }
+}
+
+seedIfEmpty();
