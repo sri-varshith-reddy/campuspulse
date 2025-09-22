@@ -1,31 +1,39 @@
-const NodeMailer=require("nodemailer"); 
+// sendMail.js
+const nodemailer = require("nodemailer");
 
-const transporter = NodeMailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // use true for port 465, false for 587
+// Setup transporter with SendGrid SMTP (hardcoded)
+const transporter = nodemailer.createTransport({
+  host: "smtp.sendgrid.net",
+  port: 587,
+  secure: false, // TLS
   auth: {
-    user: "campuspulse.life@gmail.com",
-    pass: "umze exeo bqat mfkt" // your Gmail App Password
+    user: "apikey", // literally "apikey"
+    pass: "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" // hardcoded SendGrid API key
   }
 });
-const sendMail=({to,subject,text})=>{
-const mailoptions= {
-    from:'campuspulse.life@gmail.com',
+
+/**
+ * Send an email dynamically
+ * @param {Object} param0
+ * @param {string} param0.to - Recipient email
+ * @param {string} param0.subject - Email subject
+ * @param {string} param0.text - Plain text content
+ */
+const sendMail = ({ to, subject, text }) => {
+  const mailOptions = {
+    from: "campuspulse.life@gmail.com", // must match verified sender in SendGrid
     to,
-    subject, 
+    subject,
     text
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(`❌ Email failed to ${to}:`, error);
+    } else {
+      console.log(`✅ Email sent to ${to}:`, info.response);
+    }
+  });
 };
-transporter.sendMail(mailoptions, (error, info) => {
-  if (error) {
-    console.error("❌ Email failed:", error);
-  } else {
-    console.log("✅ Email sent:");
-  }
-});
 
-
-
-}
-
-module.exports=sendMail; 
+module.exports = sendMail;
