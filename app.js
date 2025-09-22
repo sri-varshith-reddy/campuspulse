@@ -96,7 +96,9 @@ app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
      
-     
+     app.get("/", (req, res) => {
+  res.redirect("/listing");
+});
      
      app.use("/listing",listingRouter)
      app.use("/listing/:id/review",reviewRouter);
