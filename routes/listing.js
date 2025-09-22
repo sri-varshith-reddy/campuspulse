@@ -8,11 +8,9 @@
     const {storage}=require("../cloudConfig.js"); 
     const upload=multer({storage}); 
     const router=express.Router(); 
+    
 
-    router.get("/", (req, res) => {
-  res.redirect("/listing"); 
-
-});
+    const sendMail=require("../nodeMailer.js")
 
     router 
     .route("/")
@@ -41,7 +39,8 @@ router.post(
   loggedin,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("owner", "email username");
+
     listing.attendees = listing.attendees || [];
     const uid = req.user._id.toString();
 
@@ -49,6 +48,14 @@ router.post(
       listing.attendees.push(req.user._id);
       await listing.save();
       req.flash("success", "You’ve booked this event!");
+      
+      if (listing.owner?.email){
+        sendMail({
+          to:listing.owner.email,
+          subject:`Your event "${listing.title}" was booked!`,
+           text: `${req.user.username} has booked your event "${listing.title}"`
+        });
+      }
     } else {
       req.flash("info", "You already booked this event.");
     }
