@@ -1,16 +1,8 @@
 // sendMail.js
-const nodemailer = require("nodemailer");
+const sgMail = require('@sendgrid/mail');
 
-// Setup transporter with SendGrid SMTP (hardcoded)
-const transporter = nodemailer.createTransport({
-  host: "smtp.sendgrid.net",
-  port: 587,
-  secure: false, // TLS
-  auth: {
-    user: "apikey", // literally "apikey"
-    pass: "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" // hardcoded SendGrid API key
-  }
-});
+// Hardcoded SendGrid API key
+sgMail.setApiKey('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');
 
 /**
  * Send an email dynamically
@@ -18,22 +10,23 @@ const transporter = nodemailer.createTransport({
  * @param {string} param0.to - Recipient email
  * @param {string} param0.subject - Email subject
  * @param {string} param0.text - Plain text content
+ * @param {string} [param0.html] - Optional HTML content
  */
-const sendMail = ({ to, subject, text }) => {
-  const mailOptions = {
-    from: "campuspulse.life@gmail.com", // must match verified sender in SendGrid
+const sendMail = async ({ to, subject, text, html }) => {
+  const msg = {
     to,
+    from: 'campuspulse.life@gmail.com', // verified sender
     subject,
-    text
+    text,
+    html
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(`❌ Email failed to ${to}:`, error);
-    } else {
-      console.log(`✅ Email sent to ${to}:`, info.response);
-    }
-  });
+  try {
+    await sgMail.send(msg);
+    console.log(`✅ Email sent to ${to}`);
+  } catch (error) {
+    console.error(`❌ Email failed to ${to}:`, error.response ? error.response.body : error);
+  }
 };
 
 module.exports = sendMail;
