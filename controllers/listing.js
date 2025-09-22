@@ -1,5 +1,11 @@
 const Listing = require("../models/listing.js");
-    
+
+
+router.get("/", (req, res) => {
+  res.redirect("/listing"); 
+
+});
+
 //CATEGORY
 module.exports.index = async (req, res) => {
     const { category } = req.query;
