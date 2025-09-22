@@ -9,7 +9,10 @@
     const upload=multer({storage}); 
     const router=express.Router(); 
 
-    
+    router.get("/", (req, res) => {
+  res.redirect("/listing"); 
+
+});
 
     router 
     .route("/")
