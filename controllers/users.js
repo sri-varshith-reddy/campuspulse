@@ -10,12 +10,13 @@ module.exports.signUp =async (req, res, next) => {
         console.log(registerUser);
         
         req.login(registerUser, (err) => {
-            if (err) {
-                return next(err);  // Use `return` to prevent further execution
-            }
-            req.flash("success", "User was registered");
-            return res.redirect("/listing");  // ✅ Only one redirect
-        });
+    if (err) {
+        return next(err);
+    }
+    req.flash("success", "User was registered");
+    return res.redirect("/listing");
+});
+
     } catch (e) {
         req.flash("error", e.message);
         return res.redirect("/signup"); 
